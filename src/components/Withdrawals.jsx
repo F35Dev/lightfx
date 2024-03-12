@@ -165,123 +165,119 @@ function WithdrawalsList({ authUser }) {
                   <p className="text-white text-lg"> {withdrawals.length} </p>
                 </div>
 
-                <div className="flex flex-col justify-center items-center space-y-4 w-full">
-                  {/* Table starts  */}
+                {/* Table starts  */}
 
-                  <div className="w-full  flex flex-col justify-center items-start rounded overflow-auto py-32 max-h-[500px]">
-                    <table className="w-full  bg-bg3 pt-20 shadow-md rounded table">
-                      <tr>
-                        <th className="py-6 px-4">S/N</th>
-                        <th className="py-6 px-4"> Client </th>
-                        <th className="py-6 px-4"> Amount </th>
-                        <th className="py-6 px-4">Payout Mode </th>
-                        <th className="py-6 px-4"> Status </th>
+                <div className="w-full  flex flex-col justify-center items-start rounded overflow-auto py-32 max-h-[500px]">
+                  <table className="w-full  bg-bg3 pt-20 shadow-md rounded ">
+                    <tr>
+                      <th className="py-6 px-4">S/N</th>
+                      <th className="py-6 px-4"> Client </th>
+                      <th className="py-6 px-4"> Amount </th>
+                      <th className="py-6 px-4">Payout Mode </th>
+                      <th className="py-6 px-4"> Status </th>
 
-                        <th className="py-6 px-4"> Date </th>
-                        <th className="py-6 px-4">Wallet</th>
-                        <th className="py-6 px-4"> Address</th>
-                        <th className="py-6 px-4">Bank Number </th>
-                        <th className="py-6 px-4">Bank Name</th>
-                        <th className="py-6 px-4">SWIFT</th>
+                      <th className="py-6 px-4"> Date </th>
+                      <th className="py-6 px-4">Wallet</th>
+                      <th className="py-6 px-4"> Address</th>
+                      <th className="py-6 px-4">Bank Number </th>
+                      <th className="py-6 px-4">Bank Name</th>
+                      <th className="py-6 px-4">SWIFT</th>
 
-                        <th className="py-6 px-4 text-green-500">Actions</th>
+                      <th className="py-6 px-4 text-green-500">Actions</th>
 
-                        {/* Add more headers as needed */}
-                      </tr>
+                      {/* Add more headers as needed */}
+                    </tr>
 
-                      <tbody>
-                        {withdrawals.map((w, i) => (
-                          <tr
-                            key={i}
-                            className={`${
-                              i % 2 === 0 ? " bg-opacity-80 " : "  "
-                            } border-b border-white/20`}
+                    {withdrawals.map((w, i) => (
+                      <tr
+                        key={i}
+                        className={`${
+                          i % 2 === 0 ? " bg-opacity-80 " : "  "
+                        } border-b border-white/20`}
+                      >
+                        <td className="py-4 px-4 text-center table-cell">
+                          {i + 1}
+                        </td>
+
+                        <td className="py-4 px-4 text-center table-cell">
+                          {w.user.email}
+                        </td>
+
+                        <td className="py-4 px-4 text-center table-cell">
+                          ${w.amount}
+                        </td>
+
+                        <td className="py-4 px-4 text-center table-cell">
+                          {w.payoutMode}
+                        </td>
+
+                        <td className="py-4 px-4 font-bold capitalize text-center table-cell">
+                          {w.status}
+                        </td>
+
+                        <td className="py-4 px-4 text-center table-cell">
+                          {new Date(w.date).toLocaleString()}
+                        </td>
+
+                        <td className="py-4 px-4 text-center table-cell">
+                          {w.wallet || "Nil"}
+                        </td>
+
+                        <td className="py-4 px-4 text-center table-cell">
+                          {w.address || "Nil"}
+                        </td>
+
+                        <td className="py-4 px-4 text-center table-cell">
+                          {w.bankNumber || "Nil"}
+                        </td>
+
+                        <td className="py-4 px-4 text-center table-cell">
+                          {w.bankName || "Nil"}
+                        </td>
+
+                        <td className="py-4 px-4 text-center table-cell">
+                          {w.swift || "Nil"}
+                        </td>
+
+                        <td className="py-4 px-4 text-center table-cell">
+                          {w.status === "pending" && (
+                            <span
+                              onClick={async () => {
+                                await approveWithdrawal(w._id);
+                              }}
+                              className="inline-bock  cursor-pointer px-1 text-green-500 hover:text-green-400"
+                            >
+                              Approve
+                            </span>
+                          )}
+                          <span
+                            onClick={() => {
+                              setEditObj({
+                                show: true,
+                                data: w,
+                              });
+                            }}
+                            className="inline-bock cursor-pointer px-1 text-yellow-500 hover:text-yellow-400"
                           >
-                            <td className="py-4 px-4 text-center table-cell">
-                              {i + 1}
-                            </td>
+                            Edit
+                          </span>{" "}
+                          <span
+                            onClick={async () => {
+                              await deleteWithdrawal(w._id);
+                            }}
+                            className="inline-bock  cursor-pointer px-1 text-red-500 hover:text-red-400"
+                          >
+                            Delete
+                          </span>
+                        </td>
 
-                            <td className="py-4 px-4 text-center table-cell">
-                              {w.user.email}
-                            </td>
-
-                            <td className="py-4 px-4 text-center table-cell">
-                              ${w.amount}
-                            </td>
-
-                            <td className="py-4 px-4 text-center table-cell">
-                              {w.payoutMode}
-                            </td>
-
-                            <td className="py-4 px-4 font-bold capitalize text-center table-cell">
-                              {w.status}
-                            </td>
-
-                            <td className="py-4 px-4 text-center table-cell">
-                              {new Date(w.date).toLocaleString()}
-                            </td>
-
-                            <td className="py-4 px-4 text-center table-cell">
-                              {w.wallet || "Nil"}
-                            </td>
-
-                            <td className="py-4 px-4 text-center table-cell">
-                              {w.address || "Nil"}
-                            </td>
-
-                            <td className="py-4 px-4 text-center table-cell">
-                              {w.bankNumber || "Nil"}
-                            </td>
-
-                            <td className="py-4 px-4 text-center table-cell">
-                              {w.bankName || "Nil"}
-                            </td>
-
-                            <td className="py-4 px-4 text-center table-cell">
-                              {w.swift || "Nil"}
-                            </td>
-
-                            <td className="py-4 px-4 text-center table-cell">
-                              {w.status === "pending" && (
-                                <span
-                                  onClick={async () => {
-                                    await approveWithdrawal(w._id);
-                                  }}
-                                  className="inline-bock  cursor-pointer px-1 text-green-500 hover:text-green-400"
-                                >
-                                  Approve
-                                </span>
-                              )}
-                              <span
-                                onClick={() => {
-                                  setEditObj({
-                                    show: true,
-                                    data: w,
-                                  });
-                                }}
-                                className="inline-bock cursor-pointer px-1 text-yellow-500 hover:text-yellow-400"
-                              >
-                                Edit
-                              </span>{" "}
-                              <span
-                                onClick={async () => {
-                                  await deleteWithdrawal(w._id);
-                                }}
-                                className="inline-bock  cursor-pointer px-1 text-red-500 hover:text-red-400"
-                              >
-                                Delete
-                              </span>
-                            </td>
-
-                            {/* Add more data rows as needed */}
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-
-                  {/* Table ends  */}
+                        {/* Add more data rows as needed */}
+                      </tr>
+                    ))}
+                  </table>
                 </div>
+
+                {/* Table ends  */}
               </div>
             )}
 

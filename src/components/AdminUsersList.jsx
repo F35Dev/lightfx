@@ -84,92 +84,88 @@ function AdminUsersList({ authUser }) {
                 <p className="text-white text-lg"> {users.length} </p>
               </div>
 
-              <div className="flex flex-col justify-center items-center space-y-4 w-full">
-                {/* Table starts  */}
+              {/* Table starts  */}
 
-                <div className="w-full  flex flex-col justify-center items-start rounded overflow-auto  max-h-[90vh]">
-                  <table className="w-full  bg-bg3  shadow-md rounded table h-full">
-                    <tr>
-                      <th className="py-6 px-4">S/N</th>
+              <div className="w-full  flex flex-col justify-center items-start rounded overflow-auto  max-h-[90vh]">
+                <table className="w-full  bg-bg3  shadow-md rounded  h-full">
+                  <tr>
+                    <th className="py-6 px-4">S/N</th>
 
-                      <th className="py-6 px-4">Name </th>
-                      <th className="py-6 px-4">Email</th>
-                      <th className="py-6 px-4">Balance</th>
-                      <th className="py-6 px-4">Bonus</th>
-                      <th className="py-6 px-4">Withdrawals</th>
-                      <th className="py-6 px-4">Deposits</th>
-                      <th className="py-6 px-4"> Joined </th>
-                      <th className="py-6 px-4 text-green-500">Actions</th>
+                    <th className="py-6 px-4">Name </th>
+                    <th className="py-6 px-4">Email</th>
+                    <th className="py-6 px-4">Balance</th>
+                    <th className="py-6 px-4">Bonus</th>
+                    <th className="py-6 px-4">Withdrawals</th>
+                    <th className="py-6 px-4">Deposits</th>
+                    <th className="py-6 px-4"> Joined </th>
+                    <th className="py-6 px-4 text-green-500">Actions</th>
 
-                      {/* Add more headers as needed */}
-                    </tr>
+                    {/* Add more headers as needed */}
+                  </tr>
 
-                    <tbody>
-                      {users.map((user, i) => (
-                        <tr
-                          key={i}
-                          className={`${
-                            i % 2 === 0 ? " bg-opacity-80 " : "  "
-                          } border-b border-white/20`}
+                  {users.map((user, i) => (
+                    <tr
+                      key={i}
+                      className={`${
+                        i % 2 === 0 ? " bg-opacity-80 " : "  "
+                      } border-b border-white/20`}
+                    >
+                      <td className="py-4 px-4 text-center table-cell">
+                        {i + 1}
+                      </td>
+                      {console.log(user)}
+
+                      <td className="py-4 px-4 text-center table-cell">
+                        {user.firstName} {user.lastName}{" "}
+                        {authUser.email === user.email && "  (You)"}
+                      </td>
+                      <td className="py-4 px-4 text-center table-cell">
+                        {user.email}
+                      </td>
+                      <td className="py-4 px-4 text-center table-cell">
+                        ${user.account?.balance}
+                      </td>
+                      <td className="py-4 px-4 text-center table-cell">
+                        ${user.account?.bonus}
+                      </td>
+                      <td className="py-4 px-4 text-center table-cell">
+                        ${user.account?.withdrawals}
+                      </td>
+                      <td className="py-4 px-4 text-center table-cell">
+                        ${user.account?.deposits}
+                      </td>
+
+                      <td className="py-4 px-4 text-center table-cell">
+                        {new Date(user.dateJoined).toLocaleString()}
+                      </td>
+
+                      <td className="py-4 px-4 text-center table-cell  flex-col justify-start space-y-2">
+                        <span className="inline-bock  cursor-pointer px-1 text-green-500 hidden hover:text-green-400">
+                          Credit
+                        </span>
+                        <span
+                          onClick={() =>
+                            setEditObj({
+                              show: true,
+                              user,
+                            })
+                          }
+                          className="inline-bock cursor-pointer px-1 text-yellow-500 hover:text-yellow-400"
                         >
-                          <td className="py-4 px-4 text-center table-cell">
-                            {i + 1}
-                          </td>
-                          {console.log(user)}
-
-                          <td className="py-4 px-4 text-center table-cell">
-                            {user.firstName} {user.lastName}{" "}
-                            {authUser.email === user.email && "  (You)"}
-                          </td>
-                          <td className="py-4 px-4 text-center table-cell">
-                            {user.email}
-                          </td>
-                          <td className="py-4 px-4 text-center table-cell">
-                            ${user.account?.balance}
-                          </td>
-                          <td className="py-4 px-4 text-center table-cell">
-                            ${user.account?.bonus}
-                          </td>
-                          <td className="py-4 px-4 text-center table-cell">
-                            ${user.account?.withdrawals}
-                          </td>
-                          <td className="py-4 px-4 text-center table-cell">
-                            ${user.account?.deposits}
-                          </td>
-
-                          <td className="py-4 px-4 text-center table-cell">
-                            {new Date(user.dateJoined).toLocaleString()}
-                          </td>
-
-                          <td className="py-4 px-4 text-center table-cell  flex-col justify-start space-y-2">
-                            <span className="inline-bock  cursor-pointer px-1 text-green-500 hidden hover:text-green-400">
-                              Credit
-                            </span>
-                            <span
-                              onClick={() =>
-                                setEditObj({
-                                  show: true,
-                                  user,
-                                })
-                              }
-                              className="inline-bock cursor-pointer px-1 text-yellow-500 hover:text-yellow-400"
-                            >
-                              {" "}
-                              Edit{" "}
-                            </span>{" "}
-                            <span className="inline-bock hidden cursor-pointer px-1 text-red-500 hover:text-red-400">
-                              Delete
-                            </span>
-                          </td>
-                          {/* Add more data rows as needed */}
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-
-                {/* Table ends  */}
+                          {" "}
+                          Edit{" "}
+                        </span>{" "}
+                        <span className="inline-bock hidden cursor-pointer px-1 text-red-500 hover:text-red-400">
+                          Delete
+                        </span>
+                      </td>
+                      {/* Add more data rows as needed */}
+                    </tr>
+                  ))}
+                </table>
               </div>
+
+              {/* Table ends  */}
             </div>
           )}
 

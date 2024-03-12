@@ -167,7 +167,7 @@ function WithdrawalsList({ authUser }) {
 
                 {/* Table starts  */}
 
-                <div className="w-full  flex flex-col justify-center items-start rounded overflow-auto py-32 max-h-[500px]">
+                <div className="w-full  flex flex-col justify-center items-start rounded ">
                   <table className="w-full  bg-bg3 pt-20 shadow-md rounded ">
                     <tr>
                       <th className="py-6 px-4">S/N</th>

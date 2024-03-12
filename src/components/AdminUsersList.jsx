@@ -87,8 +87,8 @@ function AdminUsersList({ authUser }) {
               <div className="flex flex-col justify-center items-center space-y-4 w-full">
                 {/* Table starts  */}
 
-                <div className="w-full  flex flex-col justify-center items-start rounded overflow-auto  max-h-[500px]">
-                  <table className="w-full  bg-bg3  shadow-md rounded table">
+                <div className="w-full  flex flex-col justify-center items-start rounded overflow-auto  max-h-[90vh]">
+                  <table className="w-full  bg-bg3  shadow-md rounded table h-full">
                     <thead>
                       <tr>
                         <th className="py-6 px-4">S/N</th>

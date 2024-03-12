@@ -89,22 +89,21 @@ function AdminUsersList({ authUser }) {
 
                 <div className="w-full  flex flex-col justify-center items-start rounded overflow-auto  max-h-[90vh]">
                   <table className="w-full  bg-bg3  shadow-md rounded table h-full">
-                    <thead>
-                      <tr>
-                        <th className="py-6 px-4">S/N</th>
+                    <tr>
+                      <th className="py-6 px-4">S/N</th>
 
-                        <th className="py-6 px-4">Name </th>
-                        <th className="py-6 px-4">Email</th>
-                        <th className="py-6 px-4">Balance</th>
-                        <th className="py-6 px-4">Bonus</th>
-                        <th className="py-6 px-4">Withdrawals</th>
-                        <th className="py-6 px-4">Deposits</th>
-                        <th className="py-6 px-4"> Joined </th>
-                        <th className="py-6 px-4 text-green-500">Actions</th>
+                      <th className="py-6 px-4">Name </th>
+                      <th className="py-6 px-4">Email</th>
+                      <th className="py-6 px-4">Balance</th>
+                      <th className="py-6 px-4">Bonus</th>
+                      <th className="py-6 px-4">Withdrawals</th>
+                      <th className="py-6 px-4">Deposits</th>
+                      <th className="py-6 px-4"> Joined </th>
+                      <th className="py-6 px-4 text-green-500">Actions</th>
 
-                        {/* Add more headers as needed */}
-                      </tr>
-                    </thead>
+                      {/* Add more headers as needed */}
+                    </tr>
+
                     <tbody>
                       {users.map((user, i) => (
                         <tr

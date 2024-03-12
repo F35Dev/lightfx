@@ -170,26 +170,25 @@ function WithdrawalsList({ authUser }) {
 
                   <div className="w-full  flex flex-col justify-center items-start rounded overflow-auto py-32 max-h-[500px]">
                     <table className="w-full  bg-bg3 pt-20 shadow-md rounded table">
-                      <thead>
-                        <tr>
-                          <th className="py-6 px-4">S/N</th>
-                          <th className="py-6 px-4"> Client </th>
-                          <th className="py-6 px-4"> Amount </th>
-                          <th className="py-6 px-4">Payout Mode </th>
-                          <th className="py-6 px-4"> Status </th>
+                      <tr>
+                        <th className="py-6 px-4">S/N</th>
+                        <th className="py-6 px-4"> Client </th>
+                        <th className="py-6 px-4"> Amount </th>
+                        <th className="py-6 px-4">Payout Mode </th>
+                        <th className="py-6 px-4"> Status </th>
 
-                          <th className="py-6 px-4"> Date </th>
-                          <th className="py-6 px-4">Wallet</th>
-                          <th className="py-6 px-4"> Address</th>
-                          <th className="py-6 px-4">Bank Number </th>
-                          <th className="py-6 px-4">Bank Name</th>
-                          <th className="py-6 px-4">SWIFT</th>
+                        <th className="py-6 px-4"> Date </th>
+                        <th className="py-6 px-4">Wallet</th>
+                        <th className="py-6 px-4"> Address</th>
+                        <th className="py-6 px-4">Bank Number </th>
+                        <th className="py-6 px-4">Bank Name</th>
+                        <th className="py-6 px-4">SWIFT</th>
 
-                          <th className="py-6 px-4 text-green-500">Actions</th>
+                        <th className="py-6 px-4 text-green-500">Actions</th>
 
-                          {/* Add more headers as needed */}
-                        </tr>
-                      </thead>
+                        {/* Add more headers as needed */}
+                      </tr>
+
                       <tbody>
                         {withdrawals.map((w, i) => (
                           <tr

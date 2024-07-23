@@ -35,6 +35,26 @@ function AdminUsersList({ authUser }) {
     setLoading(false);
   }
 
+  async function deleteUser(email) {
+    setLoading(true);
+
+    const res = await fetchUtil({
+      url: makeUrl(config.apiEndpoints.adminDelete),
+      method: "POST",
+      body: JSON.stringify({
+        email,
+      }),
+    });
+
+    if (res.success) {
+      alert("User deleted successfully!");
+    } else {
+      setErr(res?.error?.message || res?.errorMessage);
+    }
+
+    setLoading(false);
+  }
+
   useEffect(() => {
     getUsers();
   }, []);
@@ -155,7 +175,10 @@ function AdminUsersList({ authUser }) {
                           {" "}
                           Edit{" "}
                         </span>{" "}
-                        <span className="inline-bock hidden cursor-pointer px-1 text-red-500 hover:text-red-400">
+                        <span
+                          onClick={() => deleteUser(user.email)}
+                          className="inline-bock  cursor-pointer px-1 text-red-500 hover:text-red-400"
+                        >
                           Delete
                         </span>
                       </td>

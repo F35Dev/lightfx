@@ -18,6 +18,7 @@ const config = {
     adminWithdraw: "/admin/withdraw",
     adminTopup: "/admin/topup",
     adminApprove: "/admin/approve",
+    adminDelete: "/admin/deleteuser",
   },
 };
 
